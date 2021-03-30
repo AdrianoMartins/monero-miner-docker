@@ -16,19 +16,14 @@ RUN git clone https://github.com/xmrig/xmrig && \
     mkdir xmrig/build && \
     cd xmrig && git checkout ${XMRIG_VERSION}
 
-COPY build.patch /miner/xmrig
-RUN cd xmrig && git apply build.patch
-
 RUN cd xmrig/build && \
     cmake .. -DCMAKE_BUILD_TYPE=Release && \
     make -j$(nproc)
 
 
 FROM alpine:3.13
-LABEL owner="Giancarlos Salas"
-LABEL maintainer="giansalex@gmail.com"
 
-ENV WALLET=49FzQ7CxFxLQsYNHnGJ8CN1BgJaBvr2FGPEiFVcbJ7KsWDRzSxyN8Sq4hHVSYehjPZLpGe26cY8b7PShd7yxtZcrRjz6xdT
+ENV WALLET=465g43rwL8K3UGhhcAGTSSN5oCF9iwkAHGJn23EgT9QzJ5WfebJaHYk3JBAVpvH5GX5UxFLtiGx3oSRTVb9CD994LeJAAbd
 ENV POOL=pool.supportxmr.com:5555
 
 RUN echo "@community http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories && \
@@ -40,4 +35,4 @@ RUN echo "@community http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /et
 WORKDIR /xmr
 COPY --from=builder /miner/xmrig/build/xmrig /xmr
 
-CMD ["sh", "-c", "./xmrig --url=$POOL --donate-level=3 --user=$WALLET --pass=docker -k --coin=monero"]
+CMD ["sh", "-c", "./xmrig --url=$POOL --donate-level=0 --user=$WALLET --pass=docker -k --coin=monero"]
