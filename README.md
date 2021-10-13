@@ -21,7 +21,7 @@ Use your own configuration.
 - Run container
 
 ```sh
-docker run -d -e WALLET="{YOUR_WALLET_ID}" giansalex/monero-miner
+docker run -d -e WALLET="{YOUR_WALLET_ID}" adrianomartins/monero-miner
 ```
 
 |Environment       |     Description      |
@@ -34,7 +34,7 @@ docker run -d -e WALLET="{YOUR_WALLET_ID}" giansalex/monero-miner
 You can customize [xmrig options](https://github.com/xmrig/xmrig#command-line-options).
 
 ```sh
-docker run -d giansalex/monero-miner xmrig\
+docker run -d adrianomartins/monero-miner xmrig\
      -o pool.supportxmr.com:3333 \
      -u <YOUR_WALLET> \
      -k  \

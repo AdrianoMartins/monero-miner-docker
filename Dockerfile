@@ -1,6 +1,6 @@
 FROM alpine:3.13 AS builder
 
-ARG XMRIG_VERSION='v6.10.0'
+ARG XMRIG_VERSION='v6.15.2'
 WORKDIR /miner
 
 RUN echo "@community http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories && \
@@ -10,6 +10,7 @@ RUN echo "@community http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /et
     cmake \
     libuv-dev \
     libressl-dev \ 
+    linux-headers \
     hwloc-dev@community
 
 RUN git clone https://github.com/xmrig/xmrig && \
